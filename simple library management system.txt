@@ -1,0 +1,85 @@
+# SIMPLE LIBRARY MANAGEMENT
+class Main :
+    print("*****     WELCOME     *****")
+    def mainmenu(self):
+        print("   MAIN MENU   \n")
+        contents=[
+            '1 ADD BOOK ',
+            '2 VIEW BOOKS',
+            '3 LEND BOOK',
+            '4 RETURN BOOK',
+            '5 EXIT '
+        ]
+        for i in contents:
+            print(i)
+    def choice(self):
+        self.ch = int(input("Enter your choice : "))
+
+menu=Main()
+Main.mainmenu(menu)
+
+class Add(Main) :
+      list_of_books=['HalfGirlfriend','You are the best friend','You are my reason to smile']
+      def addbook(self):
+            nb = int(input("enter the number of books you want to add : "))
+            print("enter the name of book  : ")
+            for i in range(nb):
+                book = input()
+                add.list_of_books.append(book)
+            print("your books are added successfully to our library")
+            if nb<=0  :
+                print("sorry no books were added to library ")
+
+add=Add()
+
+class View(Add) :
+    alt_book_list = add.list_of_books
+    def viewbook(self):
+            for i in range(len(add.list_of_books)) :
+                print(add.list_of_books[i])
+
+
+view=View()
+
+class Lend(View):
+    def lendbook(self):
+      self.lend_book = input("enter the book you want:  \n")
+      if self.lend_book in add.list_of_books :
+          print("Thanks !! for lending the book ....Hope you ll enjoy reading it :) :) ")
+          add.list_of_books.remove(self.lend_book)
+
+      else :
+          print("Sorry !! Currently we don't have ", self.lend_book,"named book... may be someone has already taken it ")
+
+lend=Lend()
+
+class Return(Lend) :
+    def returnbook(self):
+        return_book=input("enter the book you want to return : \n")
+        if (return_book ==lend.lend_book) and lend.lend_book in view.alt_book_list:
+            print("Thanks for returning the book!! :) :) ")
+            add.list_of_books.append(return_book)
+        else :
+            print("sorry this book does not belong to this Library ")
+
+ret=Return()
+
+while(True) :
+  Main.choice(menu)
+  if __name__ == '__main__':
+    if menu.ch==1 :
+        Add.addbook(add)
+
+    elif menu.ch==2:
+        View.viewbook(view)
+
+    elif menu.ch==3:
+        Lend.lendbook(lend)
+
+    elif menu.ch==4 :
+        Return.returnbook(ret)
+
+    elif menu.ch==5:
+        exit(0)
+    else:
+        print("INCORRECT CHOICE CHOSEN !!!")
